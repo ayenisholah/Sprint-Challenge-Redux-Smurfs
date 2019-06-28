@@ -22,7 +22,7 @@ export function getSmurfs() {
       .catch(err => {
         const error = err.response.data.message;
         dispatch({ type: GET_SMURF_FAILURE, payload: error });
-        console.log(error);
+        console.error(error);
       });
   }
 };
@@ -36,7 +36,23 @@ export function addSmurf(smurf) {
       .catch(err => {
         const error = err.response.data.message;
         dispatch({ type: ADD_SMURF_FAILURE, payload: error });
-        console.log(error);
+        console.error(error);
       });
+  }
+}
+
+export function deleteSmurf(id) {
+  return (dispatch) => {
+    dispatch({ type: DELETING_SMURF });
+
+    axios.delete(`http://localhost:3333/smurfs/${id}`)
+      .then(res => {
+        dispatch({ type: DELETE_SMURF_SUCCESS, payload: res.data });
+      })
+      .catch(err => {
+        const error = err.response.data.message;
+        dispatch({ type: DELETE_SMURF_FAILURE, payload: error });
+        console.error(error)
+      })
   }
 }
