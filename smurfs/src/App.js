@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css';
+
+import SmurfView from './views/SmurfViews';
 import Home from './components/Home';
 
 class App extends Component {
@@ -17,6 +19,7 @@ class App extends Component {
         <div>Start inside of your `src/index.js` file!</div>
         <div>Have fun!</div>
         <Route path='/' component={Home} />
+        <Route path='/smurfs' component={SmurfView} />
       </div>
     );
   }
