@@ -27,3 +27,16 @@ export function getSmurfs() {
   }
 };
 
+export function addSmurf(smurf) {
+  return (dispatch) => {
+    axios.post('http://localhost:3333/smurfs', smurf)
+      .then(res => {
+        dispatch({ type: ADD_SMURF_SUCCESS, payload: res.data });
+      })
+      .catch(err => {
+        const error = err.response.data.message;
+        dispatch({ type: ADD_SMURF_FAILURE, payload: error });
+        console.log(error);
+      });
+  }
+}
