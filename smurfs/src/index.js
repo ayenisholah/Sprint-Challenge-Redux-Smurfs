@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 // import logger from 'redux-logger';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router, withRouter } from 'react-router-dom';
 import {
   smurfsReducer,
   errorMessageReducer
@@ -26,9 +27,13 @@ const store = createStore(
   )
 );
 
+const AppWithRouter = withRouter(App);
+
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </Provider>,
   document.getElementById('root')
 );
